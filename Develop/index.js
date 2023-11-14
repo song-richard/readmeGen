@@ -58,22 +58,19 @@ async function startGenerator() {
         const answers = await inquirer.prompt(questions);
         const { title, description, table, installation, usage, license, contributors, tests, anyQ } = answers;
 
-        const readMeContent = `# ${title}\n\n## Description\n${description}\n\n## Table of Contents\n${table}\n\n## Installation\n${installation}\n\n## Usage\n${usage}\n\n## License\n${license}\n\n## Contributors\n${contributors}\n\n## Tests\n${tests}\n\n## Questions\n${anyQ}\n`;
+        let readMeContent = `## Title\n${title}\n\n## Description\n${description}\n\n## Table of Contents\n${table}\n\n## Installation\n${installation}\n\n## Usage\n${usage}\n\n## License\n${license}\n\n## Contributors\n${contributors}\n\n## Tests\n${tests}\n\n## Questions\n${anyQ}\n`;
 
-
-        writeToFile('READMETEST.md', readMeContent)
+        writeToFile('READMETEST.md', readMeContent);
 
     } catch (err) {
         console.error(err);
     }
 }
 
-
-
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
     fs.writeFileSync(fileName, data, 'utf8');
-    console.log(`File ${fileName} has been written successfully!`)
+    console.log(`File ${fileName} has been written successfully!`);
 }
 
 // TODO: Create a function to initialize app
