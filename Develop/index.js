@@ -68,7 +68,7 @@ async function startGenerator() {
     
     const writeTitle = `## ${title}`;
 
-    writeToFile('README.md', writeTitle)
+    writeToFile('READMETEST.md', writeTitle)
 
     } catch (err) {
         console.error(err);
