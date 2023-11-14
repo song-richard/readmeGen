@@ -66,9 +66,9 @@ async function startGenerator() {
     const { tests } = answers;
     const { question } = answers;
     
-    const writeTitle = `## ${title}`;
+    const readMeContent = `## ${title}\n ## ${description} \n ${table} \n ${installation} \n ${usage} \n ${license} \n ${contributors} \n ${tests} \n ${question}`;
 
-    writeToFile('READMETEST.md', writeTitle)
+    writeToFile('READMETEST.md', readMeContent)
 
     } catch (err) {
         console.error(err);
