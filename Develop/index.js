@@ -56,19 +56,11 @@ const questions = [
 async function startGenerator() {
     try {
         const answers = await inquirer.prompt(questions);
-    const { title } = answers;
-    const { description } = answers;
-    const { table } = answers;
-    const { installation } = answers;
-    const { usage } = answers;
-    const { license } = answers;
-    const { contributors } = answers;
-    const { tests } = answers;
-    const { question } = answers;
-    
-    const readMeContent = `## ${title}\n## ${description} \n## ${table} \n## ${installation} \n## ${usage} \n## ${license} \n## ${contributors} \n## ${tests} \n## ${question}`;
+        const { title, description, table, installation, usage, license, contributors, tests, question } = answers;
 
-    writeToFile('READMETEST.md', readMeContent)
+        const readMeContent = `## Title\n${title}\n## Description\n${description} \n## Table\n${table} \n## Installation\n${installation} \n## Usage\n${usage} \n## License\n${license} \n## Contributors\n${contributors} \n## Tests\n${tests} \n## Question\n${question}`;
+
+        writeToFile('READMETEST.md', readMeContent)
 
     } catch (err) {
         console.error(err);
