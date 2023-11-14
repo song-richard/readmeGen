@@ -60,6 +60,7 @@ async function startGenerator() {
 }
 
 
+
 // TODO: Create a function to write README file
 // function writeToFile(fileName, data) {}
 
@@ -68,3 +69,5 @@ async function startGenerator() {
 
 // Function call to initialize app
 // init();
+
+startGenerator()
