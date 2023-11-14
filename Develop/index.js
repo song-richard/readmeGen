@@ -1,5 +1,5 @@
 // TODO: Include packages needed for this application
-const inquirer = require('inquirer')
+const inquirer = require('inquirer');
 
 
 // TODO: Create an array of questions for user input
@@ -9,11 +9,11 @@ const questions = [
         name: 'title',
         message: 'Title of Project:'
     },
-    // {
-    //     type: 'input',
-    //     name: 'description',
-    //     message: 'Description:'
-    // },
+    {
+        type: 'input',
+        name: 'description',
+        message: 'Description:'
+    },
     // {
     //     type: 'input',
     //     name: 'table',
@@ -51,15 +51,27 @@ const questions = [
     // }
 ];
 
+
 async function startGenerator() {
     try {
         const answers = await inquirer.prompt(questions);
-        const { title } = answers;
-        console.log(title)
+    const { title } = answers;
+    const { description } = answers;
+    const { table } = answers;
+    const { installation } = answers;
+    const { usage } = answers;
+    const { license } = answers;
+    const { contributors } = answers;
+    const { tests } = answers;
+    const { questions } = answers;
+
+
+
     } catch (err) {
         console.error(err);
     }
 }
+
 
 
 
@@ -72,4 +84,4 @@ async function startGenerator() {
 // Function call to initialize app
 // init();
 
-startGenerator()
+startGenerator();
