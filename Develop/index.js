@@ -47,7 +47,7 @@ const questions = [
     },
     {
         type: 'input',
-        name: 'question',
+        name: 'anyQ',
         message: 'Questions:'
     }
 ];
@@ -56,9 +56,9 @@ const questions = [
 async function startGenerator() {
     try {
         const answers = await inquirer.prompt(questions);
-        const { title, description, table, installation, usage, license, contributors, tests, question } = answers;
+        const { title, description, table, installation, usage, license, contributors, tests, anyQ } = answers;
 
-        const readMeContent = `# ${title}\n\n## Description\n${description}\n\n## Table of Contents\n${table}\n\n## Installation\n${installation}\n\n## Usage\n${usage}\n\n## License\n${license}\n\n## Contributors\n${contributors}\n\n## Tests\n${tests}\n\n## Questions\n${questions}`;
+        const readMeContent = `# ${title}\n\n## Description\n${description}\n\n## Table of Contents\n${table}\n\n## Installation\n${installation}\n\n## Usage\n${usage}\n\n## License\n${license}\n\n## Contributors\n${contributors}\n\n## Tests\n${tests}\n\n## Questions\n${anyQ}\n`;
 
 
         writeToFile('READMETEST.md', readMeContent)
