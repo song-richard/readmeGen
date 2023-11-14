@@ -15,41 +15,41 @@ const questions = [
         name: 'description',
         message: 'Description:'
     },
-    // {
-    //     type: 'input',
-    //     name: 'table',
-    //     message: 'Table of Contents:'
-    // },
-    // {
-    //     type: 'input',
-    //     name: 'installation',
-    //     message: 'Installation:'
-    // },
-    // {
-    //     type: 'input',
-    //     name: 'usage',
-    //     message: 'Usage:'
-    // },
-    // {
-    //     type: 'input',
-    //     name: 'license',
-    //     message: 'License:'
-    // },
-    // {
-    //     type: 'input',
-    //     name: 'contributors',
-    //     message: 'Contributors:'
-    // },
-    // {
-    //     type: 'input',
-    //     name: 'tests',
-    //     message: 'Tests:'
-    // },
-    // {
-    //     type: 'input',
-    //     name: 'question',
-    //     message: 'Questions:'
-    // }
+    {
+        type: 'input',
+        name: 'table',
+        message: 'Table of Contents:'
+    },
+    {
+        type: 'input',
+        name: 'installation',
+        message: 'Installation:'
+    },
+    {
+        type: 'input',
+        name: 'usage',
+        message: 'Usage:'
+    },
+    {
+        type: 'input',
+        name: 'license',
+        message: 'License:'
+    },
+    {
+        type: 'input',
+        name: 'contributors',
+        message: 'Contributors:'
+    },
+    {
+        type: 'input',
+        name: 'tests',
+        message: 'Tests:'
+    },
+    {
+        type: 'input',
+        name: 'question',
+        message: 'Questions:'
+    }
 ];
 
 
@@ -66,7 +66,7 @@ async function startGenerator() {
     const { tests } = answers;
     const { question } = answers;
     
-    const readMeContent = `## ${title}\n ## ${description} \n ${table} \n ${installation} \n ${usage} \n ${license} \n ${contributors} \n ${tests} \n ${question}`;
+    const readMeContent = `## ${title}\n## ${description} \n## ${table} \n## ${installation} \n## ${usage} \n## ${license} \n## ${contributors} \n## ${tests} \n## ${question}`;
 
     writeToFile('READMETEST.md', readMeContent)
 
