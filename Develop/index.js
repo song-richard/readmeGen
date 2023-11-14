@@ -51,6 +51,15 @@ const questions = [
     }
 ];
 
+async function startGenerator() {
+    try {
+        const answers = await inquirer.prompt(questions);
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
 
