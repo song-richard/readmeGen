@@ -1,5 +1,6 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
+const fs = require('fs')
 
 
 // TODO: Create an array of questions for user input
@@ -46,7 +47,7 @@ const questions = [
     // },
     // {
     //     type: 'input',
-    //     name: 'questions',
+    //     name: 'question',
     //     message: 'Questions:'
     // }
 ];
@@ -63,9 +64,11 @@ async function startGenerator() {
     const { license } = answers;
     const { contributors } = answers;
     const { tests } = answers;
-    const { questions } = answers;
+    const { question } = answers;
+    
+    const writeTitle = `## ${title}`;
 
-
+    writeToFile('README.md', writeTitle)
 
     } catch (err) {
         console.error(err);
@@ -74,9 +77,11 @@ async function startGenerator() {
 
 
 
-
 // TODO: Create a function to write README file
-// function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    fs.writeFileSync(fileName, data, 'utf8');
+    console.log(`File ${fileName} has been written successfully!`)
+}
 
 // TODO: Create a function to initialize app
 // function init() {}
