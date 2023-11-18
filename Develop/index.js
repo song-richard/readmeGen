@@ -52,7 +52,6 @@ const questions = [
     }
 ];
 
-
 async function startGenerator() {
     try {
         const answers = await inquirer.prompt(questions);
