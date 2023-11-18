@@ -56,9 +56,7 @@ async function startGenerator() {
     try {
         const answers = await inquirer.prompt(questions);
         const { title, description, table, installation, usage, licenseKey, contributors, tests, anyQ } = answers;
-
         const licenseInfo = await getLicenseInfo(licenseKey);
-
         let readMeContent = `## Title\n${title}\n\n## Description\n${description}\n\n## Table of Contents\n${table}\n\n## Installation\n${installation}\n\n## Usage\n${usage}\n\n## License\n${JSON.stringify(
             licenseInfo,
             null,
@@ -66,7 +64,6 @@ async function startGenerator() {
           )}\n\n## Contributors\n${contributors}\n\n## Tests\n${tests}\n\n## Questions\n${anyQ}\n`;
 
         writeToFile('READMETEST.md', readMeContent);
-
     } catch (err) {
         console.error(err);
     }
@@ -76,10 +73,8 @@ async function getLicenseInfo(licenseKey) {
     try {
       const fetchModule = await import('node-fetch');
       const fetch = fetchModule.default;
-  
       const response = await fetch(`https://api.github.com/licenses/${licenseKey}`);
       const data = await response.json();
-  
       return {
         name: data.name,
         spdx_id: data.spdx_id,
