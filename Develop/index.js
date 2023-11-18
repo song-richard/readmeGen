@@ -1,7 +1,6 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const licenseMarkDown = require('');
 const fetch = require('node-fetch');
 
 
@@ -61,7 +60,8 @@ async function startGenerator() {
         const answers = await inquirer.prompt(questions);
         const { title, description, table, installation, usage, license, contributors, tests, anyQ } = answers;
 
-        let readMeContent = `## Title\n${title}\n\n## Description\n${description}\n\n## Table of Contents\n${table}\n\n## Installation\n${installation}\n\n## Usage\n${usage}\n\n## License\n${license}\n\n## Contributors\n${contributors}\n\n## Tests\n${tests}\n\n## Questions\n${anyQ}\n`;
+        const licenseInfo = await getLicenseInfo(licenseKey);
+        let readMeContent = `## Title\n${title}\n\n## Description\n${description}\n\n## Table of Contents\n${table}\n\n## Installation\n${installation}\n\n## Usage\n${usage}\n\n## License\n${JSON.stringify(licenseInfo, null, 2)}\n\n## Contributors\n${contributors}\n\n## Tests\n${tests}\n\n## Questions\n${anyQ}\n`;
 
         writeToFile('READMETEST.md', readMeContent);
 
@@ -78,9 +78,21 @@ function writeToFile(fileName, data) {
 
 async function getLicenseInfo(licenseKey) {
     try {
-        const response = await fetch(`https://api.github.com/licenses/${licenseKey}`)
+        const response = await fetch(`https://api.github.com/licenses/${licenseKey}`);
+        const data = await response.json();
+        return {
+            name: data.name,
+            spdx_id: data.spdx_id,
+            url: data.url,
+            description: data.description,
+            permissions: data.permissions,
+            conditions: data.conditions,
+            limitations: data.limitations,
+            body: data.body,
+          };
     } catch (err) {
         console.error(err);
+        return {};
     }
 }
 
