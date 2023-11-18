@@ -1,8 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const fetch = require('node-fetch');
-
+const fetch = import('node-fetch').then(module => module.default);
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -32,7 +31,7 @@ const questions = [
         message: 'Usage:'
     },
     {
-        type: 'list',
+        type: 'input',
         name: 'licenseKey',
         message: 'License SPDX identifier:'
     },
@@ -58,9 +57,10 @@ const questions = [
 async function startGenerator() {
     try {
         const answers = await inquirer.prompt(questions);
-        const { title, description, table, installation, usage, license, contributors, tests, anyQ } = answers;
+        const { title, description, table, installation, usage, licenseKey, contributors, tests, anyQ } = answers;
 
         const licenseInfo = await getLicenseInfo(licenseKey);
+
         let readMeContent = `## Title\n${title}\n\n## Description\n${description}\n\n## Table of Contents\n${table}\n\n## Installation\n${installation}\n\n## Usage\n${usage}\n\n## License\n${JSON.stringify(licenseInfo, null, 2)}\n\n## Contributors\n${contributors}\n\n## Tests\n${tests}\n\n## Questions\n${anyQ}\n`;
 
         writeToFile('READMETEST.md', readMeContent);
