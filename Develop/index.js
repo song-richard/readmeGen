@@ -1,7 +1,8 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
-const fs = require('fs')
-const licenseMarkDown = require('')
+const fs = require('fs');
+const licenseMarkDown = require('');
+const fetch = require('node-fetch');
 
 
 // TODO: Create an array of questions for user input
@@ -32,9 +33,9 @@ const questions = [
         message: 'Usage:'
     },
     {
-        type: 'input',
-        name: 'license',
-        message: 'License:'
+        type: 'list',
+        name: 'licenseKey',
+        message: 'License SPDX identifier:'
     },
     {
         type: 'input',
@@ -75,10 +76,14 @@ function writeToFile(fileName, data) {
     console.log(`File ${fileName} has been written successfully!`);
 }
 
-// TODO: Create a function to initialize app
-// function init() {}
+async function getLicenseInfo(licenseKey) {
+    try {
+        const response = await fetch(`https://api.github.com/licenses/${licenseKey}`)
+    } catch (err) {
+        console.error(err);
+    }
+}
 
-// Function call to initialize app
-// init();
+
 
 startGenerator();
