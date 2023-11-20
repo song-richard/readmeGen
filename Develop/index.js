@@ -60,7 +60,7 @@ async function startGenerator() {
     try {
         const answers = await inquirer.prompt(questions);
         const { title, description, table, installation, usage, licenseKey, contributors, tests, anyQ } = answers;
-        
+
         const licenseInfo = await getLicenseInfo(licenseKey);
         if (!licenseInfo.name) {
             console.log(`Invalid license key: ${licenseKey}`);
@@ -71,7 +71,6 @@ async function startGenerator() {
 
         writeToFile('READMETEST.md', readMeContent);
 
-        // ...
     } catch (err) {
         console.error(err);
     }
