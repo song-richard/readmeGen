@@ -52,18 +52,25 @@ const questions = [
     }
 ];
 
+function formatLicenseInfo(licenseInfo) {
+    return `**License:**\n\nName: ${licenseInfo.name}\nSPDX ID: ${licenseInfo.spdx_id}\nURL: ${licenseInfo.url}\nDescription: ${licenseInfo.description}\n\nPermissions: ${licenseInfo.permissions.join(', ')}\nConditions: ${licenseInfo.conditions.join(', ')}\nLimitations: ${licenseInfo.limitations.join(', ')}\n\nBody: ${licenseInfo.body}\n`;
+}
+
 async function startGenerator() {
     try {
         const answers = await inquirer.prompt(questions);
         const { title, description, table, installation, usage, licenseKey, contributors, tests, anyQ } = answers;
+
         const licenseInfo = await getLicenseInfo(licenseKey);
-        let readMeContent = `## Title\n${title}\n\n## Description\n${description}\n\n## Table of Contents\n${table}\n\n## Installation\n${installation}\n\n## Usage\n${usage}\n\n## License\n${JSON.stringify(
-            licenseInfo,
-            null,
-            2
-          )}\n\n## Contributors\n${contributors}\n\n## Tests\n${tests}\n\n## Questions\n${anyQ}\n`;
+        if (!licenseInfo.name) {
+            console.log(`Invalid license key: ${licenseKey}`);
+            return;
+        }
+
+        let readMeContent = `## Title\n${title}\n\n## Description\n${description}\n\n## Table of Contents\n${table}\n\n## Installation\n${installation}\n\n## Usage\n${usage}\n\n${formatLicenseInfo(licenseInfo)}\n## Contributors\n${contributors}\n\n## Tests\n${tests}\n\n## Questions\n${anyQ}\n`;
 
         writeToFile('READMETEST.md', readMeContent);
+
     } catch (err) {
         console.error(err);
     }
