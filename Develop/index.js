@@ -47,9 +47,14 @@ const questions = [
     },
     {
         type: 'input',
-        name: 'anyQ',
-        message: 'Questions:'
-    }
+        name: 'githubUsername',
+        message: 'GitHub Username:'
+    },
+    {
+        type: 'input',
+        name: 'personalEmail',
+        message: 'Personal Email:'
+    },
 ];
 
 function formatLicenseInfo(licenseInfo) {
@@ -59,7 +64,7 @@ function formatLicenseInfo(licenseInfo) {
 async function startGenerator() {
     try {
         const answers = await inquirer.prompt(questions);
-        const { title, description, table, installation, usage, licenseKey, contributors, tests, anyQ } = answers;
+        const { title, description, table, installation, usage, licenseKey, contributors, tests, anyQ, githubUsername, personalEmail } = answers;
 
         const licenseInfo = await getLicenseInfo(licenseKey);
         if (!licenseInfo.name) {
@@ -67,7 +72,7 @@ async function startGenerator() {
             return;
         }
 
-        let readMeContent = `## Title\n${title}\n\n## Description\n${description}\n\n## Table of Contents\n${table}\n\n## Installation\n${installation}\n\n## Usage\n${usage}\n\n${formatLicenseInfo(licenseInfo)}\n## Contributors\n${contributors}\n\n## Tests\n${tests}\n\n## Questions\n${anyQ}\n`;
+        let readMeContent = `## Title\n${title}\n\n## Description\n${description}\n\n## Table of Contents\n${table}\n\n## Installation\n${installation}\n\n## Usage\n${usage}\n\n${formatLicenseInfo(licenseInfo)}\n## Contributors\n${contributors}\n\n## Tests\n${tests}\n\n## Questions\nFeel free to reach out with any questions on my [GitHub](https://github.com/${githubUsername}) or via email at ${personalEmail}.\n`;
 
         writeToFile('READMETEST.md', readMeContent);
 
