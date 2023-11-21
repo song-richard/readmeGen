@@ -1,9 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const fetch = import('node-fetch').then((module) => module.default);
 
-// TODO: Create an array of questions for user input
 const questions = [
     {
         type: 'input',
@@ -103,7 +101,6 @@ async function getLicenseInfo(licenseKey) {
     }
   }
 
-// TODO: Create a function to write README file
 function writeToFile(fileName, data) {
     fs.writeFileSync(fileName, data, 'utf8');
     console.log(`File ${fileName} has been written successfully!`);
