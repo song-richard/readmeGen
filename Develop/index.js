@@ -47,9 +47,14 @@ const questions = [
     },
     {
         type: 'input',
-        name: 'anyQ',
-        message: 'Questions:'
-    }
+        name: 'githubUsername',
+        message: 'GitHub Username:'
+    },
+    {
+        type: 'input',
+        name: 'personalEmail',
+        message: 'Personal Email:'
+    },
 ];
 
 function formatLicenseInfo(licenseInfo) {
