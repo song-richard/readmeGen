@@ -15,13 +15,15 @@ Navigate to the project directory in your terminal.
 
 Run the following command to install the required dependencies: 'npm install inquirer'
 
-
 ## Usage
 After installing the necessary dependencies, you can generate a README by running the following command:
 
 node index.js
 
 Follow the prompts provided by the inquirer package to input information about your project. Once completed, the generator will create a well-structured README file based on your responses.
+
+![README GIF](./Assets/README%20GIF.gif)
+
 
 **License:**
 
